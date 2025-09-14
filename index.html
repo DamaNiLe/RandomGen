@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Números Aleatorios - Métodos Congruenciales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-random"></i>
+                <span>RandomGen</span>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-algorithm="intro">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </li>
+            <li class="nav-item" data-algorithm="lineal">
+                <i class="fas fa-chart-line"></i>
+                <span>Lineal</span>
+            </li>
+            <li class="nav-item" data-algorithm="multiplicativo">
+                <i class="fas fa-times"></i>
+                <span>Multiplicativo</span>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="credits">
+                <p>Realizado por</p>
+                <strong>Damaris Nina Leonardini</strong>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <h1 id="page-title">Generador de Números Aleatorios</h1>
+                <p id="page-subtitle">Métodos Congruenciales Lineal y Multiplicativo</p>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Introduction Section -->
+        <section id="intro-section" class="algorithm-section active">
+            <div class="content-grid">
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h2>¿Qué son los Números Aleatorios?</h2>
+                        <p>Un <strong>número aleatorio</strong> es un valor que se genera de manera impredecible y que no puede ser determinado por ningún patrón o regla específica.</p>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-cogs"></i>
+                                <span>Algoritmos</span>
+                                <strong>2</strong>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-calculator"></i>
+                                <span>Métodos</span>
+                                <strong>Congruenciales</strong>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Precisión</span>
+                                <strong>Alta</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Definition Card -->
+                <div class="card definition-card">
+                    <div class="card-header">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>Definición</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>En el contexto de la computación, los números aleatorios son fundamentales para:</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-microscope"></i>
+                                <span>Simulaciones de sistemas complejos</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-dice-d20"></i>
+                                <span>Métodos de Monte Carlo</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-optimize"></i>
+                                <span>Algoritmos de optimización</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-chart-area"></i>
+                                <span>Modelado de fenómenos estocásticos</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Análisis de riesgo y probabilidad</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Methods Card -->
+                <div class="card methods-card">
+                    <div class="card-header">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Métodos de Generación</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="method-comparison">
+                            <div class="method-item true-random">
+                                <div class="method-icon">
+                                    <i class="fas fa-random"></i>
+                                </div>
+                                <h4>Generadores Verdaderos</h4>
+                                <p>Utilizan fenómenos físicos aleatorios como ruido térmico, decaimiento radiactivo, etc.</p>
+                                <div class="method-tag">Físico</div>
+                            </div>
+                            <div class="method-item pseudo-random">
+                                <div class="method-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h4>Generadores Pseudoaleatorios</h4>
+                                <p>Utilizan algoritmos matemáticos determinísticos que producen secuencias que parecen aleatorias</p>
+                                <div class="method-tag">Matemático</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Algorithms Card -->
+                <div class="card algorithms-card">
+                    <div class="card-header">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Métodos Congruenciales</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Los métodos congruenciales son una familia de algoritmos pseudoaleatorios que generan secuencias de números enteros mediante relaciones de congruencia.</p>
+                        
+                        <div class="algorithm-showcase">
+                            <div class="algorithm-item linear">
+                                <div class="algorithm-header">
+                                    <i class="fas fa-chart-line"></i>
+                                    <h4>Algoritmo Lineal Congruencial</h4>
+                                </div>
+                                <div class="formula-display">
+                                    <code>X<sub>i+1</sub> = (a × X<sub>i</sub> + c) mod m</code>
+                                </div>
+                                <div class="parameters">
+                                    <div class="param">
+                                        <span class="param-name">a</span>
+                                        <span class="param-desc">Multiplicador</span>
+                                    </div>
+                                    <div class="param">
+                                        <span class="param-name">c</span>
+                                        <span class="param-desc">Incremento</span>
+                                    </div>
+                                    <div class="param">
+                                        <span class="param-name">m</span>
+                                        <span class="param-desc">Módulo</span>
+                                    </div>
+                                    <div class="param">
+                                        <span class="param-name">X<sub>0</sub></span>
+                                        <span class="param-desc">Semilla inicial</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="algorithm-item multiplicative">
+                                <div class="algorithm-header">
+                                    <i class="fas fa-times"></i>
+                                    <h4>Algoritmo Multiplicativo Congruencial</h4>
+                                </div>
+                                <div class="formula-display">
+                                    <code>X<sub>i+1</sub> = (a × X<sub>i</sub>) mod m</code>
+                                </div>
+                                <div class="parameters">
+                                    <div class="param">
+                                        <span class="param-name">a</span>
+                                        <span class="param-desc">Multiplicador</span>
+                                    </div>
+                                    <div class="param">
+                                        <span class="param-name">m</span>
+                                        <span class="param-desc">Módulo</span>
+                                    </div>
+                                    <div class="param">
+                                        <span class="param-name">X<sub>0</sub></span>
+                                        <span class="param-desc">Semilla inicial</span>
+                                    </div>
+                                    <div class="param">
+                                        <span class="param-name">c</span>
+                                        <span class="param-desc">= 0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Normalization Card -->
+                <div class="card normalization-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Normalización</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Los números generados (X<sub>i</sub>) son enteros en el rango [0, m-1]. Para obtener números aleatorios en el intervalo [0,1), se normalizan usando:</p>
+                        <div class="formula-highlight">
+                            <div class="formula-box">
+                                <code>r<sub>i</sub> = X<sub>i</sub> / (m - 1)</code>
+                            </div>
+                            <div class="formula-explanation">
+                                <p>Donde r<sub>i</sub> es el número aleatorio normalizado en el rango [0, 1)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Linear Algorithm Section -->
+        <section id="lineal-section" class="algorithm-section">
+            <div class="algorithm-layout">
+                <!-- Algorithm Header -->
+                <div class="algorithm-header">
+                    <div class="algorithm-title">
+                        <i class="fas fa-chart-line"></i>
+                        <h2>Algoritmo Lineal Congruencial</h2>
+                    </div>
+                    <div class="algorithm-formula">
+                        <code>X<sub>i+1</sub> = (a × X<sub>i</sub> + c) mod m</code>
+                    </div>
+                </div>
+
+                <div class="algorithm-content">
+                    <!-- Input Panel -->
+                    <div class="input-panel">
+                        <div class="panel-header">
+                            <i class="fas fa-cog"></i>
+                            <h3>Parámetros de Entrada</h3>
+                        </div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="x0-lineal">X₀ (Semilla inicial)</label>
+                                <input type="number" id="x0-lineal" placeholder="Ej: 5" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="k-lineal">K (Parámetro)</label>
+                                <input type="number" id="k-lineal" placeholder="Ej: 3" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="c-lineal">C (Incremento)</label>
+                                <input type="number" id="c-lineal" placeholder="Ej: 7" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="p-lineal">P (Potencia de 2)</label>
+                                <input type="number" id="p-lineal" placeholder="Ej: 16" min="1">
+                            </div>
+                            <div class="input-group">
+                                <label for="d-lineal">D (Decimales)</label>
+                                <input type="number" id="d-lineal" placeholder="Ej: 4" min="0" max="10">
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="generate-lineal" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                <span>Generar Números</span>
+                            </button>
+                            <button id="clear-lineal" class="btn btn-secondary">
+                                <i class="fas fa-trash"></i>
+                                <span>Limpiar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Panel -->
+                    <div class="results-panel">
+                        <!-- Derived Parameters -->
+                        <div class="derived-params">
+                            <div class="panel-header">
+                                <i class="fas fa-calculator"></i>
+                                <h3>Parámetros Derivados</h3>
+                            </div>
+                            <div class="params-display">
+                                <div class="param-card">
+                                    <div class="param-label">a</div>
+                                    <div id="a-value" class="param-value">-</div>
+                                </div>
+                                <div class="param-card">
+                                    <div class="param-label">c</div>
+                                    <div id="c-value" class="param-value">-</div>
+                                </div>
+                                <div class="param-card">
+                                    <div class="param-label">g</div>
+                                    <div id="g-value" class="param-value">-</div>
+                                </div>
+                                <div class="param-card">
+                                    <div class="param-label">m</div>
+                                    <div id="m-value" class="param-value">-</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Formulas -->
+                        <div class="formulas-panel">
+                            <div class="panel-header">
+                                <i class="fas fa-formula"></i>
+                                <h3>Cálculos Paso a Paso</h3>
+                            </div>
+                            <div class="formulas-list">
+                                <div class="formula-step">
+                                    <span class="formula-label">g:</span>
+                                    <span id="g-formula-lineal" class="formula-text">-</span>
+                                </div>
+                                <div class="formula-step">
+                                    <span class="formula-label">a:</span>
+                                    <span id="a-formula-lineal" class="formula-text">-</span>
+                                </div>
+                                <div class="formula-step">
+                                    <span class="formula-label">m:</span>
+                                    <span id="m-formula-lineal" class="formula-text">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results Table -->
+                        <div class="table-panel">
+                            <div class="panel-header">
+                                <i class="fas fa-table"></i>
+                                <h3>Resultados</h3>
+                            </div>
+                            <div class="table-wrapper">
+                                <table id="results-lineal" class="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>i</th>
+                                            <th>X<sub>i-1</sub></th>
+                                            <th>Operación</th>
+                                            <th>X<sub>i</sub></th>
+                                            <th>r<sub>i</sub></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multiplicative Algorithm Section -->
+        <section id="multiplicativo-section" class="algorithm-section">
+            <div class="algorithm-layout">
+                <!-- Algorithm Header -->
+                <div class="algorithm-header">
+                    <div class="algorithm-title">
+                        <i class="fas fa-times"></i>
+                        <h2>Algoritmo Multiplicativo Congruencial</h2>
+                    </div>
+                    <div class="algorithm-formula">
+                        <code>X<sub>i+1</sub> = (a × X<sub>i</sub>) mod m</code>
+                    </div>
+                </div>
+
+                <div class="algorithm-content">
+                    <!-- Input Panel -->
+                    <div class="input-panel">
+                        <div class="panel-header">
+                            <i class="fas fa-cog"></i>
+                            <h3>Parámetros de Entrada</h3>
+                        </div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="x0-multiplicativo">X₀ (Semilla inicial)</label>
+                                <input type="number" id="x0-multiplicativo" placeholder="Ej: 5" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="k-multiplicativo">K (Parámetro)</label>
+                                <input type="number" id="k-multiplicativo" placeholder="K para 3 + 8k" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="p-multiplicativo">P (Potencia de 2)</label>
+                                <input type="number" id="p-multiplicativo" placeholder="Ej: 16" min="1">
+                            </div>
+                            <div class="input-group">
+                                <label for="d-multiplicativo">D (Decimales)</label>
+                                <input type="number" id="d-multiplicativo" placeholder="Ej: 4" min="0" max="10">
+                            </div>
+                        </div>
+
+                        <div class="formula-selection">
+                            <div class="panel-header">
+                                <i class="fas fa-radio"></i>
+                                <h3>Fórmula para 'a'</h3>
+                            </div>
+                            <div class="radio-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="k-formula" value="3+8k" checked>
+                                    <span class="radio-custom"></span>
+                                    <div class="radio-content">
+                                        <span class="radio-title">a = 3 + 8 × K</span>
+                                        <span class="radio-desc">Fórmula estándar</span>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="k-formula" value="5+8k">
+                                    <span class="radio-custom"></span>
+                                    <div class="radio-content">
+                                        <span class="radio-title">a = 5 + 8 × K</span>
+                                        <span class="radio-desc">Fórmula alternativa</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="generate-multiplicativo" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                <span>Generar Números</span>
+                            </button>
+                            <button id="clear-multiplicativo" class="btn btn-secondary">
+                                <i class="fas fa-trash"></i>
+                                <span>Limpiar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Panel -->
+                    <div class="results-panel">
+                        <!-- Derived Parameters -->
+                        <div class="derived-params">
+                            <div class="panel-header">
+                                <i class="fas fa-calculator"></i>
+                                <h3>Parámetros Derivados</h3>
+                            </div>
+                            <div class="params-display">
+                                <div class="param-card">
+                                    <div class="param-label">a</div>
+                                    <div id="a-value-multiplicativo" class="param-value">-</div>
+                                </div>
+                                <div class="param-card">
+                                    <div class="param-label">g</div>
+                                    <div id="g-value-multiplicativo" class="param-value">-</div>
+                                </div>
+                                <div class="param-card">
+                                    <div class="param-label">m</div>
+                                    <div id="m-value-multiplicativo" class="param-value">-</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Formulas -->
+                        <div class="formulas-panel">
+                            <div class="panel-header">
+                                <i class="fas fa-formula"></i>
+                                <h3>Cálculos Paso a Paso</h3>
+                            </div>
+                            <div class="formulas-list">
+                                <div class="formula-step">
+                                    <span class="formula-label">g:</span>
+                                    <span id="g-formula-multiplicativo" class="formula-text">-</span>
+                                </div>
+                                <div class="formula-step">
+                                    <span class="formula-label">a:</span>
+                                    <span id="a-formula-type-multiplicativo" class="formula-text">3 + 8 × K</span>
+                                    <span class="formula-arrow">→</span>
+                                    <span id="a-formula-multiplicativo" class="formula-text">-</span>
+                                </div>
+                                <div class="formula-step">
+                                    <span class="formula-label">m:</span>
+                                    <span id="m-formula-multiplicativo" class="formula-text">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results Table -->
+                        <div class="table-panel">
+                            <div class="panel-header">
+                                <i class="fas fa-table"></i>
+                                <h3>Resultados</h3>
+                            </div>
+                            <div class="table-wrapper">
+                                <table id="results-multiplicativo" class="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>i</th>
+                                            <th>X<sub>i-1</sub></th>
+                                            <th>Operación</th>
+                                            <th>X<sub>i</sub></th>
+                                            <th>r<sub>i</sub></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
