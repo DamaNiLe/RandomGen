@@ -79,6 +79,35 @@ function initializeEventListeners() {
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
+    
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+    
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close mobile menu when clicking on nav items
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
+        });
+    });
+    
+    // Close mobile menu on window resize if screen becomes larger
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+        }
+    });
 }
 
 // Función para alternar tema
@@ -97,6 +126,38 @@ function toggleTheme() {
         body.setAttribute('data-theme', 'light');
         themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         localStorage.setItem('theme', 'light');
+    }
+}
+
+// Función para alternar el menú móvil
+function toggleMobileMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+        
+        // Cambiar el icono del botón
+        if (sidebar.classList.contains('open')) {
+            mobileMenuToggle.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    }
+}
+
+// Función para cerrar el menú móvil
+function closeMobileMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
     }
 }
 
